@@ -73,6 +73,26 @@ from .utils import (
     find_available_port,
 )
 
+# Session Registry
+from .registry import SessionRegistry, get_registry
+
+# Process Monitor
+from .monitor import ProcessMonitor, get_monitor
+
+# Session Discovery
+from .discovery import (
+    SessionDiscovery,
+    PortConflictHandler,
+    get_devtools_info,
+    get_devtools_targets,
+)
+
+# App Scanner
+from .app_scanner import ElectronApp, ElectronAppScanner, get_scanner
+
+# Main Driver Manager
+from .driver import ElectronDriverManager
+
 __all__ = [
     # Version
     "__version__",
@@ -105,4 +125,26 @@ __all__ = [
     "get_selenium_manager_path",
     "is_port_in_use",
     "find_available_port",
+
+    # Session Registry
+    "SessionRegistry",
+    "get_registry",
+
+    # Process Monitor
+    "ProcessMonitor",
+    "get_monitor",
+
+    # Session Discovery
+    "SessionDiscovery",
+    "PortConflictHandler",
+    "get_devtools_info",
+    "get_devtools_targets",
+
+    # App Scanner
+    "ElectronApp",
+    "ElectronAppScanner",
+    "get_scanner",
+
+    # Main Driver Manager
+    "ElectronDriverManager",
 ]
