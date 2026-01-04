@@ -7,6 +7,7 @@ using W3C WebDriver/WebElement component patterns.
 Generated from SLTT classifier scan with 76 elements classified.
 """
 
+import platform
 from typing import Optional, List
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.by import By
@@ -15,6 +16,9 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
+
+# Cross-platform modifier key
+MODIFIER_KEY = Keys.COMMAND if platform.system() == 'Darwin' else Keys.CONTROL
 
 from ..components import (
     BasePage,
@@ -71,8 +75,9 @@ class TabHeaderComponent(BaseComponent):
         self.click()
 
     def close(self) -> None:
-        """Close this tab via middle-click."""
-        ActionChains(self.driver).move_to_element(self._root).click(button=1).perform()
+        """Close this tab using keyboard shortcut."""
+        self.activate()
+        ActionChains(self.driver).key_down(MODIFIER_KEY).send_keys('w').key_up(MODIFIER_KEY).perform()
 
 
 class QuickSwitcherComponent(BaseComponent):
@@ -131,6 +136,7 @@ class CommandPaletteComponent(BaseComponent):
             input_el.clear()
             input_el.send_keys(query)
         except NoSuchElementException:
+            # Command palette input not found - may not be fully loaded yet
             pass
 
     def execute_first(self) -> None:
@@ -197,15 +203,15 @@ class EditorComponent(BaseComponent):
 
     def select_all(self) -> None:
         """Select all text."""
-        ActionChains(self.driver).key_down(Keys.COMMAND).send_keys('a').key_up(Keys.COMMAND).perform()
+        ActionChains(self.driver).key_down(MODIFIER_KEY).send_keys('a').key_up(MODIFIER_KEY).perform()
 
     def copy(self) -> None:
         """Copy selected text."""
-        ActionChains(self.driver).key_down(Keys.COMMAND).send_keys('c').key_up(Keys.COMMAND).perform()
+        ActionChains(self.driver).key_down(MODIFIER_KEY).send_keys('c').key_up(MODIFIER_KEY).perform()
 
     def paste(self) -> None:
         """Paste from clipboard."""
-        ActionChains(self.driver).key_down(Keys.COMMAND).send_keys('v').key_up(Keys.COMMAND).perform()
+        ActionChains(self.driver).key_down(MODIFIER_KEY).send_keys('v').key_up(MODIFIER_KEY).perform()
 
 
 # ============================================================================
@@ -254,7 +260,8 @@ class ObsidianPage(BasePage):
             if 'Obsidian' in self._driver.title:
                 return
         # If no titled window found, use the last one
-        self._driver.switch_to.window(self._driver.window_handles[-1])
+        if self._driver.window_handles:
+            self._driver.switch_to.window(self._driver.window_handles[-1])
 
     @property
     def url_pattern(self) -> str:
@@ -272,7 +279,7 @@ class ObsidianPage(BasePage):
 
     def create_new_note(self) -> None:
         """Create a new note (Cmd+N)."""
-        ActionChains(self._driver).key_down(Keys.COMMAND).send_keys('n').key_up(Keys.COMMAND).perform()
+        ActionChains(self._driver).key_down(MODIFIER_KEY).send_keys('n').key_up(MODIFIER_KEY).perform()
 
     def create_new_canvas(self) -> None:
         """Create a new canvas via ribbon action."""
@@ -297,7 +304,7 @@ class ObsidianPage(BasePage):
             new_tab.click()
         except NoSuchElementException:
             # Fallback to keyboard shortcut
-            ActionChains(self._driver).key_down(Keys.COMMAND).send_keys('t').key_up(Keys.COMMAND).perform()
+            ActionChains(self._driver).key_down(MODIFIER_KEY).send_keys('t').key_up(MODIFIER_KEY).perform()
 
     # =============================================
     # READ / OPEN Operations
@@ -305,7 +312,7 @@ class ObsidianPage(BasePage):
 
     def open_quick_switcher(self) -> None:
         """Open the quick switcher (Cmd+O)."""
-        ActionChains(self._driver).key_down(Keys.COMMAND).send_keys('o').key_up(Keys.COMMAND).perform()
+        ActionChains(self._driver).key_down(MODIFIER_KEY).send_keys('o').key_up(MODIFIER_KEY).perform()
 
     @property
     def quick_switcher(self) -> Optional[QuickSwitcherComponent]:
@@ -326,7 +333,7 @@ class ObsidianPage(BasePage):
 
     def open_command_palette(self) -> None:
         """Open the command palette (Cmd+P)."""
-        ActionChains(self._driver).key_down(Keys.COMMAND).send_keys('p').key_up(Keys.COMMAND).perform()
+        ActionChains(self._driver).key_down(MODIFIER_KEY).send_keys('p').key_up(MODIFIER_KEY).perform()
 
     @property
     def command_palette(self) -> Optional[CommandPaletteComponent]:
@@ -359,7 +366,7 @@ class ObsidianPage(BasePage):
             back_btn = self._driver.find_element(By.CSS_SELECTOR, '[aria-label="Navigate back"]')
             back_btn.click()
         except NoSuchElementException:
-            ActionChains(self._driver).key_down(Keys.COMMAND).send_keys('[').key_up(Keys.COMMAND).perform()
+            ActionChains(self._driver).key_down(MODIFIER_KEY).send_keys('[').key_up(MODIFIER_KEY).perform()
 
     def navigate_forward(self) -> None:
         """Navigate forward in history."""
@@ -367,7 +374,7 @@ class ObsidianPage(BasePage):
             forward_btn = self._driver.find_element(By.CSS_SELECTOR, '[aria-label="Navigate forward"]')
             forward_btn.click()
         except NoSuchElementException:
-            ActionChains(self._driver).key_down(Keys.COMMAND).send_keys(']').key_up(Keys.COMMAND).perform()
+            ActionChains(self._driver).key_down(MODIFIER_KEY).send_keys(']').key_up(MODIFIER_KEY).perform()
 
     def open_search(self) -> None:
         """Open the search panel."""
@@ -493,15 +500,15 @@ class ObsidianPage(BasePage):
 
     def open_settings(self) -> None:
         """Open settings (Cmd+,)."""
-        ActionChains(self._driver).key_down(Keys.COMMAND).send_keys(',').key_up(Keys.COMMAND).perform()
+        ActionChains(self._driver).key_down(MODIFIER_KEY).send_keys(',').key_up(MODIFIER_KEY).perform()
 
     def toggle_left_sidebar(self) -> None:
         """Toggle the left sidebar."""
-        ActionChains(self._driver).key_down(Keys.COMMAND).send_keys('\\').key_up(Keys.COMMAND).perform()
+        ActionChains(self._driver).key_down(MODIFIER_KEY).send_keys('\\').key_up(MODIFIER_KEY).perform()
 
     def toggle_right_sidebar(self) -> None:
         """Toggle the right sidebar."""
-        ActionChains(self._driver).key_down(Keys.COMMAND).key_down(Keys.SHIFT).send_keys('\\').key_up(Keys.SHIFT).key_up(Keys.COMMAND).perform()
+        ActionChains(self._driver).key_down(MODIFIER_KEY).key_down(Keys.SHIFT).send_keys('\\').key_up(Keys.SHIFT).key_up(MODIFIER_KEY).perform()
 
     def screenshot(self, filename: str) -> bool:
         """Take a screenshot of the Obsidian window."""
@@ -517,8 +524,14 @@ class ObsidianPage(BasePage):
             palette = self.command_palette
             if palette:
                 palette.search_command(command_name)
-                import time
-                time.sleep(0.3)  # Wait for search results
+                # Wait for search results to appear
+                try:
+                    self._wait.until(EC.presence_of_element_located(
+                        (By.CSS_SELECTOR, '.prompt-results li, .suggestion-item')
+                    ))
+                except TimeoutException:
+                    # If no results appear, still attempt to execute
+                    pass
                 palette.execute_first()
         except TimeoutException:
             pass

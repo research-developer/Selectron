@@ -5,13 +5,18 @@ Provides a high-level interface for automating the Claude desktop application
 using W3C WebDriver/WebElement component patterns.
 """
 
+import platform
 from typing import Optional, List
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
+
+# Cross-platform modifier key
+MODIFIER_KEY = Keys.COMMAND if platform.system() == 'Darwin' else Keys.CONTROL
 
 from ..components import (
     BasePage,
@@ -46,12 +51,12 @@ class ChatInputComponent(BaseComponent):
         # Click to focus first
         self._root.click()
         # Select all and replace (clear() doesn't work on some textareas)
-        self._root.send_keys(Keys.COMMAND, 'a')
+        ActionChains(self.driver).key_down(MODIFIER_KEY).send_keys('a').key_up(MODIFIER_KEY).perform()
         self._root.send_keys(message)
 
     def send(self) -> None:
-        """Send the current message (Cmd+Enter or click send button)."""
-        self._root.send_keys(Keys.COMMAND, Keys.ENTER)
+        """Send the current message (Cmd/Ctrl+Enter or click send button)."""
+        ActionChains(self.driver).key_down(MODIFIER_KEY).send_keys(Keys.ENTER).key_up(MODIFIER_KEY).perform()
 
     def type_and_send(self, message: str) -> None:
         """Type a message and send it."""
@@ -137,9 +142,9 @@ class MessageComponent(BaseComponent):
             copy_btn = self.find_child(By.CSS_SELECTOR, '[aria-label*="Copy"], .copy-button')
             copy_btn.click()
         except NoSuchElementException:
-            # Fallback: select all and copy
-            self._root.send_keys(Keys.COMMAND, 'a')
-            self._root.send_keys(Keys.COMMAND, 'c')
+            # No reliable fallback available for copying from a non-editable container.
+            # If the UI does not expose a copy button, this operation is a no-op.
+            pass
 
 
 class SidebarComponent(BaseComponent):
@@ -218,10 +223,11 @@ class ClaudePage(BasePage):
         """Switch to the main Claude window."""
         for handle in self._driver.window_handles:
             self._driver.switch_to.window(handle)
-            if self._driver.title == 'Claude':
+            if 'Claude' in self._driver.title:
                 return
         # If no titled window found, use the last one
-        self._driver.switch_to.window(self._driver.window_handles[-1])
+        if self._driver.window_handles:
+            self._driver.switch_to.window(self._driver.window_handles[-1])
 
     @property
     def url_pattern(self) -> str:
@@ -268,10 +274,10 @@ class ClaudePage(BasePage):
         """
         wait = WebDriverWait(self._driver, timeout)
         try:
-            # Wait for the send button to become available again
-            # (indicates response is complete)
-            wait.until(EC.element_to_be_clickable(
-                (By.CSS_SELECTOR, 'button[aria-label*="Send"]')
+            # Wait for the streaming "Stop" control to disappear
+            # This is a more explicit indicator that the response is complete
+            wait.until(EC.invisibility_of_element_located(
+                (By.CSS_SELECTOR, 'button[aria-label*="Stop"]')
             ))
             # Get the last assistant message
             messages = self._driver.find_elements(By.CSS_SELECTOR,

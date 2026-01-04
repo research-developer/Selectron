@@ -8,6 +8,8 @@ Cursor is based on VS Code/Monaco, so many patterns are similar.
 Generated from SLTT classifier scan with 98 elements classified.
 """
 
+import platform
+import re
 from typing import Optional, List
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.by import By
@@ -16,6 +18,9 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
+
+# Cross-platform modifier key
+MODIFIER_KEY = Keys.COMMAND if platform.system() == 'Darwin' else Keys.CONTROL
 
 from ..components import (
     BasePage,
@@ -66,8 +71,8 @@ class EditorTabComponent(BaseComponent):
             close_btn = self.find_child(By.CSS_SELECTOR, '[aria-label*="Close"]')
             close_btn.click()
         except NoSuchElementException:
-            # Middle click to close
-            ActionChains(self.driver).move_to_element(self._root).click(button=1).perform()
+            # Fallback: use keyboard shortcut to close the active tab
+            ActionChains(self.driver).key_down(MODIFIER_KEY).send_keys('w').key_up(MODIFIER_KEY).perform()
 
 
 class FileExplorerComponent(BaseComponent):
@@ -112,7 +117,7 @@ class TerminalComponent(BaseComponent):
     def clear(self) -> None:
         """Clear the terminal."""
         self.click()
-        ActionChains(self.driver).key_down(Keys.COMMAND).send_keys('k').key_up(Keys.COMMAND).perform()
+        ActionChains(self.driver).key_down(MODIFIER_KEY).send_keys('k').key_up(MODIFIER_KEY).perform()
 
 
 class AIChatComponent(BaseComponent):
@@ -141,7 +146,7 @@ class AIChatComponent(BaseComponent):
         if input_area:
             input_area.click()
             ActionChains(self.driver).send_keys(message).perform()
-            ActionChains(self.driver).key_down(Keys.COMMAND).send_keys(Keys.ENTER).key_up(Keys.COMMAND).perform()
+            ActionChains(self.driver).key_down(MODIFIER_KEY).send_keys(Keys.ENTER).key_up(MODIFIER_KEY).perform()
 
 
 class NotebookCellComponent(BaseComponent):
@@ -166,7 +171,13 @@ class NotebookCellComponent(BaseComponent):
         return 'focused' in classes
 
     def execute(self) -> None:
-        """Execute this cell (Ctrl+Enter)."""
+        """
+        Execute this cell using Ctrl+Enter.
+
+        Note: This intentionally uses Ctrl (Keys.CONTROL) rather than Cmd
+        to match the standard Jupyter-style notebook shortcut for executing
+        a cell, even on macOS.
+        """
         self.click()
         ActionChains(self.driver).key_down(Keys.CONTROL).send_keys(Keys.ENTER).key_up(Keys.CONTROL).perform()
 
@@ -255,9 +266,11 @@ class CursorPage(BasePage):
         for handle in self._driver.window_handles:
             self._driver.switch_to.window(handle)
             # Cursor uses workbench.html
-            if 'workbench.html' in self._driver.current_url or self._driver.title:
+            if 'workbench.html' in self._driver.current_url:
                 return
-        self._driver.switch_to.window(self._driver.window_handles[-1])
+        # Fallback to last window if no match found
+        if self._driver.window_handles:
+            self._driver.switch_to.window(self._driver.window_handles[-1])
 
     @property
     def url_pattern(self) -> str:
@@ -266,7 +279,7 @@ class CursorPage(BasePage):
     def wait_for_page_load(self) -> None:
         """Wait for Cursor to be ready."""
         self._wait.until(EC.presence_of_element_located(
-            (By.CSS_SELECTOR, '#workbench\\.parts\\.editor, .monaco-workbench')
+            (By.CSS_SELECTOR, '.monaco-workbench')
         ))
 
     # =============================================
@@ -274,8 +287,8 @@ class CursorPage(BasePage):
     # =============================================
 
     def new_file(self) -> None:
-        """Create a new file (Cmd+N)."""
-        ActionChains(self._driver).key_down(Keys.COMMAND).send_keys('n').key_up(Keys.COMMAND).perform()
+        """Create a new file (Cmd/Ctrl+N)."""
+        ActionChains(self._driver).key_down(MODIFIER_KEY).send_keys('n').key_up(MODIFIER_KEY).perform()
 
     def new_chat(self) -> None:
         """Start a new AI chat (Cmd+T in AI pane)."""
@@ -307,7 +320,7 @@ class CursorPage(BasePage):
 
     def open_file_quick_open(self) -> None:
         """Open the quick file open dialog (Cmd+P)."""
-        ActionChains(self._driver).key_down(Keys.COMMAND).send_keys('p').key_up(Keys.COMMAND).perform()
+        ActionChains(self._driver).key_down(MODIFIER_KEY).send_keys('p').key_up(MODIFIER_KEY).perform()
 
     def show_chat_history(self) -> None:
         """Show the AI chat history."""
@@ -325,7 +338,6 @@ class CursorPage(BasePage):
             label = problems.get_attribute('aria-label') or ''
             # Parse "Problems (⌘NumPad0) - Total 9 Problems"
             if 'Total' in label:
-                import re
                 match = re.search(r'Total (\d+)', label)
                 if match:
                     return int(match.group(1))
@@ -339,11 +351,11 @@ class CursorPage(BasePage):
 
     def go_back(self) -> None:
         """Navigate back in history (Cmd+[)."""
-        ActionChains(self._driver).key_down(Keys.COMMAND).send_keys('[').key_up(Keys.COMMAND).perform()
+        ActionChains(self._driver).key_down(MODIFIER_KEY).send_keys('[').key_up(MODIFIER_KEY).perform()
 
     def go_forward(self) -> None:
         """Navigate forward in history (Cmd+])."""
-        ActionChains(self._driver).key_down(Keys.COMMAND).send_keys(']').key_up(Keys.COMMAND).perform()
+        ActionChains(self._driver).key_down(MODIFIER_KEY).send_keys(']').key_up(MODIFIER_KEY).perform()
 
     def open_terminal_panel(self) -> None:
         """Open the terminal panel."""
@@ -375,15 +387,15 @@ class CursorPage(BasePage):
 
     def toggle_sidebar(self) -> None:
         """Toggle the primary sidebar (Cmd+B)."""
-        ActionChains(self._driver).key_down(Keys.COMMAND).send_keys('b').key_up(Keys.COMMAND).perform()
+        ActionChains(self._driver).key_down(MODIFIER_KEY).send_keys('b').key_up(MODIFIER_KEY).perform()
 
     def toggle_panel(self) -> None:
         """Toggle the bottom panel (Cmd+J)."""
-        ActionChains(self._driver).key_down(Keys.COMMAND).send_keys('j').key_up(Keys.COMMAND).perform()
+        ActionChains(self._driver).key_down(MODIFIER_KEY).send_keys('j').key_up(MODIFIER_KEY).perform()
 
     def toggle_ai_pane(self) -> None:
         """Toggle the AI pane (Alt+Cmd+B)."""
-        ActionChains(self._driver).key_down(Keys.ALT).key_down(Keys.COMMAND).send_keys('b').key_up(Keys.COMMAND).key_up(Keys.ALT).perform()
+        ActionChains(self._driver).key_down(Keys.ALT).key_down(MODIFIER_KEY).send_keys('b').key_up(MODIFIER_KEY).key_up(Keys.ALT).perform()
 
     def change_layout(self) -> None:
         """Open the layout change menu."""
@@ -511,7 +523,7 @@ class CursorPage(BasePage):
 
     def open_command_palette(self) -> None:
         """Open the command palette (Cmd+Shift+P)."""
-        ActionChains(self._driver).key_down(Keys.COMMAND).key_down(Keys.SHIFT).send_keys('p').key_up(Keys.SHIFT).key_up(Keys.COMMAND).perform()
+        ActionChains(self._driver).key_down(MODIFIER_KEY).key_down(Keys.SHIFT).send_keys('p').key_up(Keys.SHIFT).key_up(MODIFIER_KEY).perform()
 
     def run_command(self, command_name: str) -> None:
         """Run a command by name via the command palette."""
@@ -523,8 +535,14 @@ class CursorPage(BasePage):
             input_el = self._driver.find_element(By.CSS_SELECTOR, '.quick-input-widget input')
             input_el.clear()
             input_el.send_keys(command_name)
-            import time
-            time.sleep(0.3)  # Wait for search results
+            # Wait for command palette search results to appear
+            try:
+                self._wait.until(EC.presence_of_element_located(
+                    (By.CSS_SELECTOR, '.quick-input-list .monaco-list-row')
+                ))
+            except TimeoutException:
+                # If no results appear within timeout, still attempt to run the command
+                pass
             ActionChains(self._driver).send_keys(Keys.ENTER).perform()
         except TimeoutException:
             pass
@@ -574,19 +592,19 @@ class CursorPage(BasePage):
 
     def save(self) -> None:
         """Save the current file (Cmd+S)."""
-        ActionChains(self._driver).key_down(Keys.COMMAND).send_keys('s').key_up(Keys.COMMAND).perform()
+        ActionChains(self._driver).key_down(MODIFIER_KEY).send_keys('s').key_up(MODIFIER_KEY).perform()
 
     def save_all(self) -> None:
         """Save all open files (Cmd+Alt+S)."""
-        ActionChains(self._driver).key_down(Keys.COMMAND).key_down(Keys.ALT).send_keys('s').key_up(Keys.ALT).key_up(Keys.COMMAND).perform()
+        ActionChains(self._driver).key_down(MODIFIER_KEY).key_down(Keys.ALT).send_keys('s').key_up(Keys.ALT).key_up(MODIFIER_KEY).perform()
 
     def close_file(self) -> None:
         """Close the current file (Cmd+W)."""
-        ActionChains(self._driver).key_down(Keys.COMMAND).send_keys('w').key_up(Keys.COMMAND).perform()
+        ActionChains(self._driver).key_down(MODIFIER_KEY).send_keys('w').key_up(MODIFIER_KEY).perform()
 
     def open_settings(self) -> None:
         """Open settings (Cmd+,)."""
-        ActionChains(self._driver).key_down(Keys.COMMAND).send_keys(',').key_up(Keys.COMMAND).perform()
+        ActionChains(self._driver).key_down(MODIFIER_KEY).send_keys(',').key_up(MODIFIER_KEY).perform()
 
     def screenshot(self, filename: str) -> bool:
         """Take a screenshot of the Cursor window."""
