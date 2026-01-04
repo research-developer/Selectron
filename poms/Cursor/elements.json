@@ -1,0 +1,414 @@
+{
+  "app_name": "Cursor",
+  "version": "1.0.0",
+  "generated_at": "2026-01-03T06:30:00Z",
+  "description": "Cursor AI-powered IDE",
+  "default_timeout": 10.0,
+  "element_count": 52,
+  "by_operation": {
+    "create": 8,
+    "read": 18,
+    "update": 4,
+    "navigate": 12,
+    "delete": 3,
+    "unknown": 7
+  },
+  "elements": [
+    {
+      "id": "agents_tab",
+      "selector": {"type": "css", "value": "button.segmented-tab:has-text('Agents')"},
+      "alt_selectors": [{"type": "xpath", "value": "//button[contains(@class, 'segmented-tab') and text()='Agents']"}],
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "confidence": 0.90
+    },
+    {
+      "id": "editor_tab",
+      "selector": {"type": "css", "value": "button.segmented-tab.active"},
+      "alt_selectors": [{"type": "xpath", "value": "//button[contains(@class, 'segmented-tab') and text()='Editor']"}],
+      "crud_type": "update",
+      "component_type": "Button",
+      "confidence": 0.90
+    },
+    {
+      "id": "go_back",
+      "selector": {"type": "aria_label", "value": "Go Back (⌘[)"},
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "aria_label": "Go Back (⌘[)",
+      "confidence": 0.60
+    },
+    {
+      "id": "go_forward",
+      "selector": {"type": "aria_label", "value": "Go Forward (⌘])"},
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "aria_label": "Go Forward (⌘])",
+      "confidence": 0.60
+    },
+    {
+      "id": "command_center",
+      "selector": {"type": "css", "value": ".command-center-center"},
+      "crud_type": "navigate",
+      "component_type": "Element",
+      "confidence": 0.85
+    },
+    {
+      "id": "quick_pick",
+      "selector": {"type": "css", "value": ".command-center-quick-pick"},
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "confidence": 0.85
+    },
+    {
+      "id": "toggle_primary_sidebar",
+      "selector": {"type": "aria_label", "value": "Toggle Primary Side Bar (⌘B)"},
+      "crud_type": "update",
+      "component_type": "Button",
+      "aria_label": "Toggle Primary Side Bar (⌘B)",
+      "confidence": 0.60
+    },
+    {
+      "id": "toggle_panel",
+      "selector": {"type": "aria_label", "value": "Toggle Panel (⌘J)"},
+      "crud_type": "update",
+      "component_type": "Button",
+      "aria_label": "Toggle Panel (⌘J)",
+      "confidence": 0.60
+    },
+    {
+      "id": "toggle_ai_pane",
+      "selector": {"type": "aria_label", "value": "Toggle AI Pane (⌥⌘B)"},
+      "crud_type": "update",
+      "component_type": "Button",
+      "aria_label": "Toggle AI Pane (⌥⌘B)",
+      "confidence": 0.60
+    },
+    {
+      "id": "change_layout",
+      "selector": {"type": "aria_label", "value": "Change Layout"},
+      "crud_type": "update",
+      "component_type": "Button",
+      "aria_label": "Change Layout",
+      "confidence": 0.60
+    },
+    {
+      "id": "files_explorer",
+      "selector": {"type": "aria_label", "value": "Files Explorer"},
+      "crud_type": "read",
+      "component_type": "Tree",
+      "aria_label": "Files Explorer",
+      "confidence": 0.90
+    },
+    {
+      "id": "explorer_section",
+      "selector": {"type": "css", "value": ".pane-header[aria-label*='Explorer Section']"},
+      "crud_type": "read",
+      "component_type": "Button",
+      "confidence": 0.85
+    },
+    {
+      "id": "file_item",
+      "selector": {"type": "css", "value": ".monaco-list-row[role='treeitem']"},
+      "crud_type": "read",
+      "component_type": "Element",
+      "confidence": 0.85
+    },
+    {
+      "id": "debug_console",
+      "selector": {"type": "aria_label", "value": "Debug Console"},
+      "crud_type": "read",
+      "component_type": "Tree",
+      "aria_label": "Debug Console",
+      "confidence": 0.60
+    },
+    {
+      "id": "debug_console_section",
+      "selector": {"type": "aria_label", "value": "Debug Console Section"},
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "aria_label": "Debug Console Section",
+      "confidence": 0.60
+    },
+    {
+      "id": "editor_textarea",
+      "selector": {"type": "css", "value": "textarea.inputarea.monaco-mouse-cursor-text"},
+      "crud_type": "update",
+      "component_type": "TextArea",
+      "confidence": 0.90
+    },
+    {
+      "id": "editor_tab_active",
+      "selector": {"type": "css", "value": ".tab.active.selected[role='tab']"},
+      "crud_type": "read",
+      "component_type": "Tab",
+      "confidence": 0.90
+    },
+    {
+      "id": "close_tab",
+      "selector": {"type": "aria_label", "value": "Close (⌘W)"},
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "aria_label": "Close (⌘W)",
+      "confidence": 0.60
+    },
+    {
+      "id": "split_editor",
+      "selector": {"type": "css", "value": "[aria-label*='Split Editor']"},
+      "crud_type": "create",
+      "component_type": "Button",
+      "confidence": 0.60
+    },
+    {
+      "id": "more_actions",
+      "selector": {"type": "aria_label", "value": "More Actions..."},
+      "crud_type": "read",
+      "component_type": "Button",
+      "aria_label": "More Actions...",
+      "confidence": 0.60
+    },
+    {
+      "id": "breadcrumbs",
+      "selector": {"type": "css", "value": ".monaco-breadcrumbs"},
+      "crud_type": "read",
+      "component_type": "Element",
+      "confidence": 0.85
+    },
+    {
+      "id": "new_chat_tab",
+      "selector": {"type": "css", "value": ".composite-bar-action-tab.checked"},
+      "crud_type": "create",
+      "component_type": "Tab",
+      "confidence": 0.85
+    },
+    {
+      "id": "new_chat_btn",
+      "selector": {"type": "aria_label", "value": "New Chat"},
+      "alt_selectors": [{"type": "aria_label", "value": "New Chat (⌘T)\n[⌥] Replace Chat (⌘N)"}],
+      "crud_type": "create",
+      "component_type": "Button",
+      "aria_label": "New Chat",
+      "confidence": 0.60
+    },
+    {
+      "id": "chat_history_btn",
+      "selector": {"type": "aria_label", "value": "Show Chat History (⌥⌘')"},
+      "crud_type": "read",
+      "component_type": "Button",
+      "aria_label": "Show Chat History (⌥⌘')",
+      "confidence": 0.60
+    },
+    {
+      "id": "chat_settings_btn",
+      "selector": {"type": "aria_label", "value": "Close, Export, Settings and More..."},
+      "crud_type": "update",
+      "component_type": "Button",
+      "aria_label": "Close, Export, Settings and More...",
+      "confidence": 0.60
+    },
+    {
+      "id": "composer_bar",
+      "selector": {"type": "css", "value": ".composer-bar"},
+      "crud_type": "create",
+      "component_type": "Element",
+      "confidence": 0.85
+    },
+    {
+      "id": "past_chats",
+      "selector": {"type": "css", "value": ".composer-below-chat-history-item"},
+      "crud_type": "read",
+      "component_type": "Element",
+      "confidence": 0.80
+    },
+    {
+      "id": "view_all_chats",
+      "selector": {"type": "css", "value": ".composer-below-chat-history-view-all"},
+      "crud_type": "navigate",
+      "component_type": "Link",
+      "confidence": 0.85
+    },
+    {
+      "id": "problems_tab",
+      "selector": {"type": "css", "value": "[aria-label*='Problems']"},
+      "crud_type": "read",
+      "component_type": "Tab",
+      "confidence": 0.80
+    },
+    {
+      "id": "output_tab",
+      "selector": {"type": "aria_label", "value": "Output (⇧⌘U)"},
+      "crud_type": "read",
+      "component_type": "Tab",
+      "aria_label": "Output (⇧⌘U)",
+      "confidence": 0.60
+    },
+    {
+      "id": "terminal_tab",
+      "selector": {"type": "aria_label", "value": "Terminal (⌥F12)"},
+      "crud_type": "navigate",
+      "component_type": "Tab",
+      "aria_label": "Terminal (⌥F12)",
+      "confidence": 0.60
+    },
+    {
+      "id": "terminal_section",
+      "selector": {"type": "aria_label", "value": "Terminal Section"},
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "aria_label": "Terminal Section",
+      "confidence": 0.60
+    },
+    {
+      "id": "ports_tab",
+      "selector": {"type": "aria_label", "value": "Ports"},
+      "crud_type": "read",
+      "component_type": "Tab",
+      "aria_label": "Ports",
+      "confidence": 0.60
+    },
+    {
+      "id": "hide_panel",
+      "selector": {"type": "aria_label", "value": "Hide Panel (⌘J)"},
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "aria_label": "Hide Panel (⌘J)",
+      "confidence": 0.60
+    },
+    {
+      "id": "jupyter_variables_section",
+      "selector": {"type": "aria_label", "value": "Jupyter Variables Section"},
+      "crud_type": "read",
+      "component_type": "Button",
+      "aria_label": "Jupyter Variables Section",
+      "confidence": 0.60
+    },
+    {
+      "id": "statusbar",
+      "selector": {"type": "id", "value": "workbench.parts.statusbar"},
+      "crud_type": "read",
+      "component_type": "Element",
+      "confidence": 0.95
+    },
+    {
+      "id": "remote_indicator",
+      "selector": {"type": "aria_label", "value": "remote"},
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "aria_label": "remote",
+      "confidence": 0.60
+    },
+    {
+      "id": "workspace_indicator",
+      "selector": {"type": "css", "value": "[aria-label^='Workspace:']"},
+      "crud_type": "read",
+      "component_type": "Button",
+      "confidence": 0.80
+    },
+    {
+      "id": "errors_warnings",
+      "selector": {"type": "css", "value": "[aria-label^='Errors:']"},
+      "crud_type": "read",
+      "component_type": "Button",
+      "confidence": 0.80
+    },
+    {
+      "id": "notifications",
+      "selector": {"type": "aria_label", "value": "Notifications"},
+      "crud_type": "read",
+      "component_type": "Button",
+      "aria_label": "Notifications",
+      "confidence": 0.60
+    },
+    {
+      "id": "live_share_btn",
+      "selector": {"type": "css", "value": "[aria-label*='Live Share']"},
+      "crud_type": "create",
+      "component_type": "Button",
+      "confidence": 0.60
+    },
+    {
+      "id": "go_live_btn",
+      "selector": {"type": "css", "value": "[aria-label*='Go Live']"},
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "confidence": 0.60
+    },
+    {
+      "id": "spaces_indicator",
+      "selector": {"type": "css", "value": "[aria-label^='Spaces:']"},
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "confidence": 0.60
+    },
+    {
+      "id": "cursor_tab_status",
+      "selector": {"type": "css", "value": ".copilot-plus-plus-status-on"},
+      "crud_type": "read",
+      "component_type": "Button",
+      "confidence": 0.85
+    },
+    {
+      "id": "add_code_cell",
+      "selector": {"type": "aria_label", "value": "Add Code Cell (⌘⏎)"},
+      "crud_type": "create",
+      "component_type": "Button",
+      "aria_label": "Add Code Cell (⌘⏎)",
+      "confidence": 0.60
+    },
+    {
+      "id": "add_markdown_cell",
+      "selector": {"type": "aria_label", "value": "Add Markdown Cell"},
+      "crud_type": "create",
+      "component_type": "Button",
+      "aria_label": "Add Markdown Cell",
+      "confidence": 0.60
+    },
+    {
+      "id": "run_all",
+      "selector": {"type": "aria_label", "value": "Run All"},
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "aria_label": "Run All",
+      "confidence": 0.60
+    },
+    {
+      "id": "restart_kernel",
+      "selector": {"type": "aria_label", "value": "Restart Kernel"},
+      "crud_type": "update",
+      "component_type": "Button",
+      "aria_label": "Restart Kernel",
+      "confidence": 0.60
+    },
+    {
+      "id": "clear_all_outputs",
+      "selector": {"type": "aria_label", "value": "Clear All Outputs"},
+      "crud_type": "delete",
+      "component_type": "Button",
+      "aria_label": "Clear All Outputs",
+      "confidence": 0.60
+    },
+    {
+      "id": "delete_cell",
+      "selector": {"type": "aria_label", "value": "Delete Cell (D D)"},
+      "crud_type": "delete",
+      "component_type": "Button",
+      "aria_label": "Delete Cell (D D)",
+      "confidence": 0.60
+    },
+    {
+      "id": "clear_notification",
+      "selector": {"type": "aria_label", "value": "Clear Notification (⌘⌫)"},
+      "crud_type": "delete",
+      "component_type": "Button",
+      "aria_label": "Clear Notification (⌘⌫)",
+      "confidence": 0.60
+    },
+    {
+      "id": "notebook_list",
+      "selector": {"type": "css", "value": ".monaco-list[aria-label*='Notebook']"},
+      "crud_type": "read",
+      "component_type": "Element",
+      "confidence": 0.85
+    }
+  ]
+}

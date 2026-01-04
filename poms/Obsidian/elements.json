@@ -1,0 +1,303 @@
+{
+  "app_name": "Obsidian",
+  "version": "1.0.0",
+  "generated_at": "2026-01-03T06:00:00Z",
+  "description": "Obsidian note-taking application",
+  "default_timeout": 10.0,
+  "element_count": 76,
+  "by_operation": {
+    "create": 6,
+    "read": 31,
+    "update": 4,
+    "navigate": 5,
+    "unknown": 30
+  },
+  "elements": [
+    {
+      "id": "create_new_base",
+      "selector": {"type": "aria_label", "value": "Create new base"},
+      "crud_type": "create",
+      "component_type": "Button",
+      "aria_label": "Create new base",
+      "confidence": 0.60
+    },
+    {
+      "id": "create_new_board",
+      "selector": {"type": "aria_label", "value": "Create new board"},
+      "crud_type": "create",
+      "component_type": "Button",
+      "aria_label": "Create new board",
+      "confidence": 0.60
+    },
+    {
+      "id": "create_new_canvas",
+      "selector": {"type": "aria_label", "value": "Create new canvas"},
+      "crud_type": "create",
+      "component_type": "Button",
+      "aria_label": "Create new canvas",
+      "confidence": 0.60
+    },
+    {
+      "id": "insert_template",
+      "selector": {"type": "aria_label", "value": "Insert template"},
+      "crud_type": "create",
+      "component_type": "Button",
+      "aria_label": "Insert template",
+      "confidence": 0.60
+    },
+    {
+      "id": "create_unique_note",
+      "selector": {"type": "aria_label", "value": "Create new unique note"},
+      "crud_type": "create",
+      "component_type": "Button",
+      "aria_label": "Create new unique note",
+      "confidence": 0.60
+    },
+    {
+      "id": "new_tab",
+      "selector": {"type": "aria_label", "value": "New tab"},
+      "crud_type": "create",
+      "component_type": "Button",
+      "aria_label": "New tab",
+      "confidence": 0.60
+    },
+    {
+      "id": "quick_switcher",
+      "selector": {"type": "aria_label", "value": "Open quick switcher"},
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "aria_label": "Open quick switcher",
+      "confidence": 0.60
+    },
+    {
+      "id": "graph_view",
+      "selector": {"type": "aria_label", "value": "Open graph view"},
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "aria_label": "Open graph view",
+      "confidence": 0.60
+    },
+    {
+      "id": "daily_note",
+      "selector": {"type": "aria_label", "value": "Open today's daily note"},
+      "crud_type": "read",
+      "component_type": "Button",
+      "aria_label": "Open today's daily note",
+      "confidence": 0.60
+    },
+    {
+      "id": "command_palette",
+      "selector": {"type": "aria_label", "value": "Open command palette"},
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "aria_label": "Open command palette",
+      "confidence": 0.60
+    },
+    {
+      "id": "format_converter",
+      "selector": {"type": "aria_label", "value": "Open format converter"},
+      "crud_type": "read",
+      "component_type": "Button",
+      "aria_label": "Open format converter",
+      "confidence": 0.60
+    },
+    {
+      "id": "smart_connections",
+      "selector": {"type": "aria_label", "value": "Smart Connections: Open connections view"},
+      "crud_type": "read",
+      "component_type": "Button",
+      "aria_label": "Smart Connections: Open connections view",
+      "confidence": 0.60
+    },
+    {
+      "id": "smart_lookup",
+      "selector": {"type": "aria_label", "value": "Smart Lookup: Open lookup view"},
+      "crud_type": "read",
+      "component_type": "Button",
+      "aria_label": "Smart Lookup: Open lookup view",
+      "confidence": 0.60
+    },
+    {
+      "id": "publish_changes",
+      "selector": {"type": "aria_label", "value": "Publish changes..."},
+      "crud_type": "update",
+      "component_type": "Button",
+      "aria_label": "Publish changes...",
+      "confidence": 0.54
+    },
+    {
+      "id": "files_tab",
+      "selector": {"type": "css", "value": ".workspace-tab-header[aria-label='Files']"},
+      "crud_type": "navigate",
+      "component_type": "Tab",
+      "aria_label": "Files",
+      "confidence": 0.48
+    },
+    {
+      "id": "search_tab",
+      "selector": {"type": "css", "value": ".workspace-tab-header[aria-label='Search']"},
+      "crud_type": "navigate",
+      "component_type": "Tab",
+      "aria_label": "Search",
+      "confidence": 0.58
+    },
+    {
+      "id": "bookmarks_tab",
+      "selector": {"type": "css", "value": ".workspace-tab-header[aria-label='Bookmarks']"},
+      "crud_type": "navigate",
+      "component_type": "Tab",
+      "aria_label": "Bookmarks",
+      "confidence": 0.36
+    },
+    {
+      "id": "backlinks_tab",
+      "selector": {"type": "css", "value": ".workspace-tab-header[aria-label='Backlinks']"},
+      "crud_type": "navigate",
+      "component_type": "Tab",
+      "aria_label": "Backlinks",
+      "confidence": 0.47
+    },
+    {
+      "id": "tags_tab",
+      "selector": {"type": "css", "value": ".workspace-tab-header[aria-label='Tags']"},
+      "crud_type": "read",
+      "component_type": "Tab",
+      "aria_label": "Tags",
+      "confidence": 0.46
+    },
+    {
+      "id": "navigate_back",
+      "selector": {"type": "aria_label", "value": "Navigate back"},
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "aria_label": "Navigate back",
+      "confidence": 0.60
+    },
+    {
+      "id": "navigate_forward",
+      "selector": {"type": "aria_label", "value": "Navigate forward"},
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "aria_label": "Navigate forward",
+      "confidence": 0.40
+    },
+    {
+      "id": "more_options",
+      "selector": {"type": "aria_label", "value": "More options"},
+      "crud_type": "update",
+      "component_type": "Button",
+      "aria_label": "More options",
+      "confidence": 0.55
+    },
+    {
+      "id": "change_sort_order",
+      "selector": {"type": "aria_label", "value": "Change sort order"},
+      "crud_type": "update",
+      "component_type": "Button",
+      "aria_label": "Change sort order",
+      "confidence": 0.60
+    },
+    {
+      "id": "show_search_filter",
+      "selector": {"type": "aria_label", "value": "Show search filter"},
+      "crud_type": "read",
+      "component_type": "Button",
+      "aria_label": "Show search filter",
+      "confidence": 0.60
+    },
+    {
+      "id": "todo_list",
+      "selector": {"type": "aria_label", "value": "Todo List"},
+      "crud_type": "read",
+      "component_type": "Element",
+      "aria_label": "Todo List",
+      "confidence": 0.60
+    },
+    {
+      "id": "all_properties",
+      "selector": {"type": "aria_label", "value": "All properties"},
+      "crud_type": "read",
+      "component_type": "Element",
+      "aria_label": "All properties",
+      "confidence": 0.32
+    },
+    {
+      "id": "notifications_feed",
+      "selector": {"type": "aria_label", "value": "Open notifications feed"},
+      "crud_type": "read",
+      "component_type": "Button",
+      "aria_label": "Open notifications feed",
+      "confidence": 0.60
+    },
+    {
+      "id": "quick_switcher_modal",
+      "selector": {"type": "css", "value": ".prompt"},
+      "crud_type": "read",
+      "component_type": "Modal",
+      "confidence": 0.90
+    },
+    {
+      "id": "quick_switcher_input",
+      "selector": {"type": "css", "value": ".prompt input"},
+      "crud_type": "create",
+      "component_type": "TextInput",
+      "confidence": 0.90
+    },
+    {
+      "id": "file_explorer",
+      "selector": {"type": "css", "value": ".nav-files-container"},
+      "crud_type": "read",
+      "component_type": "Element",
+      "confidence": 0.85
+    },
+    {
+      "id": "file_item",
+      "selector": {"type": "css", "value": ".nav-file-title"},
+      "crud_type": "read",
+      "component_type": "Element",
+      "confidence": 0.85
+    },
+    {
+      "id": "folder_item",
+      "selector": {"type": "css", "value": ".nav-folder-title"},
+      "crud_type": "read",
+      "component_type": "Element",
+      "confidence": 0.85
+    },
+    {
+      "id": "editor",
+      "selector": {"type": "css", "value": ".cm-content, .markdown-source-view"},
+      "crud_type": "update",
+      "component_type": "TextArea",
+      "confidence": 0.90
+    },
+    {
+      "id": "workspace_tab",
+      "selector": {"type": "css", "value": ".workspace-tab-header.tappable"},
+      "crud_type": "read",
+      "component_type": "Tab",
+      "confidence": 0.85
+    },
+    {
+      "id": "active_workspace_tab",
+      "selector": {"type": "css", "value": ".workspace-tab-header.is-active, .workspace-tab-header.mod-active"},
+      "crud_type": "read",
+      "component_type": "Tab",
+      "confidence": 0.90
+    },
+    {
+      "id": "ribbon_action",
+      "selector": {"type": "css", "value": ".side-dock-ribbon-action"},
+      "crud_type": "read",
+      "component_type": "Button",
+      "confidence": 0.80
+    },
+    {
+      "id": "app_container",
+      "selector": {"type": "css", "value": ".app-container, body"},
+      "crud_type": "read",
+      "component_type": "Element",
+      "confidence": 1.0
+    }
+  ]
+}

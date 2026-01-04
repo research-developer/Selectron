@@ -1,0 +1,135 @@
+{
+  "app_name": "Claude",
+  "version": "1.0.0",
+  "operations": [
+    {
+      "name": "create_new_chat",
+      "element_id": "new_chat_btn",
+      "action": "click",
+      "description": "Create a new chat conversation",
+      "wait_after": 0.5,
+      "post_condition": "lambda driver: driver.find_elements(By.CSS_SELECTOR, '[data-testid=\"chat-input-grid-container\"], textarea')"
+    },
+    {
+      "name": "navigate_to_chats",
+      "element_id": "chats_link",
+      "action": "click",
+      "description": "Navigate to the chats/recents list",
+      "wait_after": 0.3
+    },
+    {
+      "name": "navigate_to_projects",
+      "element_id": "projects_link",
+      "action": "click",
+      "description": "Navigate to the projects list",
+      "wait_after": 0.3
+    },
+    {
+      "name": "toggle_sidebar",
+      "element_id": "sidebar_toggle",
+      "action": "click",
+      "description": "Toggle the sidebar open/closed",
+      "wait_after": 0.2
+    },
+    {
+      "name": "focus_chat_input",
+      "element_id": "chat_input_container",
+      "action": "click",
+      "description": "Focus the chat input field"
+    },
+    {
+      "name": "type_message",
+      "element_id": "chat_textarea",
+      "action": "type",
+      "description": "Type a message in the chat input (use text='your message')",
+      "params": {"text": ""}
+    },
+    {
+      "name": "send_message",
+      "element_id": "send_btn",
+      "action": "click",
+      "description": "Click the send button to send the current message",
+      "wait_after": 0.5
+    },
+    {
+      "name": "stop_response",
+      "element_id": "stop_btn",
+      "action": "click",
+      "description": "Stop the current response generation"
+    },
+    {
+      "name": "wait_for_response",
+      "element_id": "send_btn",
+      "action": "wait_clickable",
+      "description": "Wait for Claude to finish responding (send button becomes clickable)",
+      "params": {"timeout": 60.0}
+    },
+    {
+      "name": "select_model",
+      "element_id": "model_selector",
+      "action": "click",
+      "description": "Open the model selector dropdown"
+    },
+    {
+      "name": "switch_to_chat_mode",
+      "element_id": "chat_mode_btn",
+      "action": "click",
+      "description": "Switch to Chat mode"
+    },
+    {
+      "name": "switch_to_code_mode",
+      "element_id": "code_mode_btn",
+      "action": "click",
+      "description": "Switch to Code mode"
+    },
+    {
+      "name": "open_search",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Open the search dialog (Cmd+K)",
+      "shortcut_keys": ["COMMAND", "k"],
+      "wait_after": 0.3
+    },
+    {
+      "name": "open_settings",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Open settings (Cmd+,)",
+      "shortcut_keys": ["COMMAND", ","],
+      "wait_after": 0.3
+    },
+    {
+      "name": "new_chat_shortcut",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Create new chat via keyboard shortcut (Cmd+N)",
+      "shortcut_keys": ["COMMAND", "n"],
+      "wait_after": 0.5
+    },
+    {
+      "name": "copy_last_response",
+      "element_id": "copy_btn",
+      "action": "click",
+      "description": "Copy the last response to clipboard"
+    },
+    {
+      "name": "get_last_response",
+      "element_id": "assistant_message",
+      "action": "get_text",
+      "description": "Get the text of the last assistant response"
+    },
+    {
+      "name": "read_conversation_list",
+      "element_id": "conversation_list",
+      "action": "get_text",
+      "description": "Read the conversation list items"
+    },
+    {
+      "name": "wait_page_load",
+      "element_id": "root",
+      "action": "wait_visible",
+      "description": "Wait for the page to load",
+      "params": {"timeout": 10.0}
+    }
+  ]
+}

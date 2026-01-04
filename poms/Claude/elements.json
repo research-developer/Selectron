@@ -1,0 +1,216 @@
+{
+  "app_name": "Claude",
+  "version": "1.0.0",
+  "generated_at": "2026-01-03T06:00:00Z",
+  "description": "Claude AI assistant desktop application",
+  "default_timeout": 10.0,
+  "elements": [
+    {
+      "id": "sidebar_toggle",
+      "selector": {"type": "aria_label", "value": "Close sidebar"},
+      "alt_selectors": [
+        {"type": "css", "value": "button[aria-label*='sidebar']"}
+      ],
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "text": "",
+      "aria_label": "Close sidebar",
+      "confidence": 0.85
+    },
+    {
+      "id": "new_chat_btn",
+      "selector": {"type": "aria_label", "value": "New chat"},
+      "alt_selectors": [
+        {"type": "css", "value": "a[href*='/new']"},
+        {"type": "xpath", "value": "//a[@aria-label='New chat']"}
+      ],
+      "crud_type": "create",
+      "component_type": "Link",
+      "text": "New chat",
+      "aria_label": "New chat",
+      "confidence": 0.96
+    },
+    {
+      "id": "chats_link",
+      "selector": {"type": "aria_label", "value": "Chats"},
+      "alt_selectors": [
+        {"type": "css", "value": "a[href*='/recents']"}
+      ],
+      "crud_type": "navigate",
+      "component_type": "Link",
+      "text": "Chats",
+      "aria_label": "Chats",
+      "confidence": 0.90
+    },
+    {
+      "id": "projects_link",
+      "selector": {"type": "aria_label", "value": "Projects"},
+      "alt_selectors": [
+        {"type": "css", "value": "a[href*='/projects']"}
+      ],
+      "crud_type": "navigate",
+      "component_type": "Link",
+      "text": "Projects",
+      "aria_label": "Projects",
+      "confidence": 0.90
+    },
+    {
+      "id": "chat_input_container",
+      "selector": {"type": "css", "value": "[data-testid='chat-input-grid-container']"},
+      "alt_selectors": [
+        {"type": "css", "value": ".ProseMirror"},
+        {"type": "css", "value": "[contenteditable='true']"}
+      ],
+      "crud_type": "create",
+      "component_type": "TextArea",
+      "text": "",
+      "aria_label": "",
+      "confidence": 0.95
+    },
+    {
+      "id": "chat_textarea",
+      "selector": {"type": "css", "value": "textarea"},
+      "alt_selectors": [
+        {"type": "css", "value": ".ProseMirror"},
+        {"type": "css", "value": "[contenteditable='true']"}
+      ],
+      "crud_type": "create",
+      "component_type": "TextArea",
+      "text": "",
+      "aria_label": "",
+      "confidence": 0.92
+    },
+    {
+      "id": "send_btn",
+      "selector": {"type": "css", "value": "button[aria-label*='Send']"},
+      "alt_selectors": [
+        {"type": "css", "value": "button[type='submit']"},
+        {"type": "xpath", "value": "//button[contains(@aria-label, 'Send')]"}
+      ],
+      "crud_type": "create",
+      "component_type": "Button",
+      "text": "",
+      "aria_label": "Send Message",
+      "confidence": 0.95
+    },
+    {
+      "id": "stop_btn",
+      "selector": {"type": "css", "value": "button[aria-label*='Stop']"},
+      "alt_selectors": [
+        {"type": "css", "value": ".stop-button"}
+      ],
+      "crud_type": "update",
+      "component_type": "Button",
+      "text": "",
+      "aria_label": "Stop",
+      "confidence": 0.90
+    },
+    {
+      "id": "model_selector",
+      "selector": {"type": "css", "value": "button[aria-label*='model']"},
+      "alt_selectors": [
+        {"type": "css", "value": "button[class*='model']"}
+      ],
+      "crud_type": "update",
+      "component_type": "Button",
+      "text": "",
+      "aria_label": "Select model",
+      "confidence": 0.85
+    },
+    {
+      "id": "chat_mode_btn",
+      "selector": {"type": "aria_label", "value": "Chat"},
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "text": "Chat",
+      "aria_label": "Chat",
+      "confidence": 0.90
+    },
+    {
+      "id": "code_mode_btn",
+      "selector": {"type": "aria_label", "value": "Code"},
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "text": "Code",
+      "aria_label": "Code",
+      "confidence": 0.90
+    },
+    {
+      "id": "search_input",
+      "selector": {"type": "css", "value": "input[type='search'], input[placeholder*='Search']"},
+      "crud_type": "read",
+      "component_type": "TextInput",
+      "text": "",
+      "aria_label": "Search",
+      "confidence": 0.85
+    },
+    {
+      "id": "message_container",
+      "selector": {"type": "css", "value": "[class*='message'], [data-message]"},
+      "crud_type": "read",
+      "component_type": "Element",
+      "text": "",
+      "aria_label": "",
+      "confidence": 0.80
+    },
+    {
+      "id": "assistant_message",
+      "selector": {"type": "css", "value": "[class*='assistant'], [class*='response']"},
+      "crud_type": "read",
+      "component_type": "Element",
+      "text": "",
+      "aria_label": "",
+      "confidence": 0.85
+    },
+    {
+      "id": "user_message",
+      "selector": {"type": "css", "value": "[class*='user']"},
+      "crud_type": "read",
+      "component_type": "Element",
+      "text": "",
+      "aria_label": "",
+      "confidence": 0.80
+    },
+    {
+      "id": "copy_btn",
+      "selector": {"type": "css", "value": "[aria-label*='Copy'], .copy-button"},
+      "crud_type": "read",
+      "component_type": "Button",
+      "text": "",
+      "aria_label": "Copy",
+      "confidence": 0.85
+    },
+    {
+      "id": "settings_menu",
+      "selector": {"type": "css", "value": "[aria-label*='Settings'], [aria-label*='settings']"},
+      "crud_type": "navigate",
+      "component_type": "Button",
+      "text": "",
+      "aria_label": "Settings",
+      "confidence": 0.85
+    },
+    {
+      "id": "conversation_list",
+      "selector": {"type": "css", "value": "[data-conversation], .conversation-item"},
+      "crud_type": "read",
+      "component_type": "Element",
+      "text": "",
+      "aria_label": "",
+      "confidence": 0.80
+    },
+    {
+      "id": "root",
+      "selector": {"type": "id", "value": "root"},
+      "alt_selectors": [
+        {"type": "css", "value": "#root"},
+        {"type": "css", "value": "body"}
+      ],
+      "crud_type": "read",
+      "component_type": "Element",
+      "text": "",
+      "aria_label": "",
+      "confidence": 1.0,
+      "metadata": {"description": "Root application container"}
+    }
+  ]
+}

@@ -1,0 +1,227 @@
+{
+  "app_name": "Obsidian",
+  "version": "1.0.0",
+  "operations": [
+    {
+      "name": "create_new_note",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Create a new note (Cmd+N)",
+      "shortcut_keys": ["COMMAND", "n"],
+      "wait_after": 0.5
+    },
+    {
+      "name": "create_new_canvas",
+      "element_id": "create_new_canvas",
+      "action": "click",
+      "description": "Create a new canvas",
+      "wait_after": 0.5
+    },
+    {
+      "name": "create_new_board",
+      "element_id": "create_new_board",
+      "action": "click",
+      "description": "Create a new Kanban board",
+      "wait_after": 0.5
+    },
+    {
+      "name": "create_unique_note",
+      "element_id": "create_unique_note",
+      "action": "click",
+      "description": "Create a new unique note",
+      "wait_after": 0.5
+    },
+    {
+      "name": "insert_template",
+      "element_id": "insert_template",
+      "action": "click",
+      "description": "Insert a template into current note",
+      "wait_after": 0.3
+    },
+    {
+      "name": "create_new_tab",
+      "element_id": "new_tab",
+      "action": "click",
+      "description": "Create a new tab",
+      "wait_after": 0.3
+    },
+    {
+      "name": "open_quick_switcher",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Open the quick switcher (Cmd+O)",
+      "shortcut_keys": ["COMMAND", "o"],
+      "wait_after": 0.3,
+      "post_condition": "lambda driver: driver.find_elements(By.CSS_SELECTOR, '.prompt')"
+    },
+    {
+      "name": "open_command_palette",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Open the command palette (Cmd+P)",
+      "shortcut_keys": ["COMMAND", "p"],
+      "wait_after": 0.3,
+      "post_condition": "lambda driver: driver.find_elements(By.CSS_SELECTOR, '.prompt')"
+    },
+    {
+      "name": "close_modal",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Close current modal (Escape)",
+      "shortcut_keys": ["ESCAPE"],
+      "wait_after": 0.2
+    },
+    {
+      "name": "open_graph_view",
+      "element_id": "graph_view",
+      "action": "click",
+      "description": "Open the graph view",
+      "wait_after": 0.5
+    },
+    {
+      "name": "open_daily_note",
+      "element_id": "daily_note",
+      "action": "click",
+      "description": "Open today's daily note",
+      "wait_after": 0.5
+    },
+    {
+      "name": "open_smart_connections",
+      "element_id": "smart_connections",
+      "action": "click",
+      "description": "Open Smart Connections view",
+      "wait_after": 0.3
+    },
+    {
+      "name": "open_smart_lookup",
+      "element_id": "smart_lookup",
+      "action": "click",
+      "description": "Open Smart Lookup view",
+      "wait_after": 0.3
+    },
+    {
+      "name": "navigate_back",
+      "element_id": "navigate_back",
+      "action": "click",
+      "description": "Navigate back in history"
+    },
+    {
+      "name": "navigate_forward",
+      "element_id": "navigate_forward",
+      "action": "click",
+      "description": "Navigate forward in history"
+    },
+    {
+      "name": "go_back_shortcut",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Navigate back via keyboard (Cmd+[)",
+      "shortcut_keys": ["COMMAND", "["]
+    },
+    {
+      "name": "go_forward_shortcut",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Navigate forward via keyboard (Cmd+])",
+      "shortcut_keys": ["COMMAND", "]"]
+    },
+    {
+      "name": "open_files_panel",
+      "element_id": "files_tab",
+      "action": "click",
+      "description": "Open the Files panel"
+    },
+    {
+      "name": "open_search_panel",
+      "element_id": "search_tab",
+      "action": "click",
+      "description": "Open the Search panel"
+    },
+    {
+      "name": "open_bookmarks_panel",
+      "element_id": "bookmarks_tab",
+      "action": "click",
+      "description": "Open the Bookmarks panel"
+    },
+    {
+      "name": "open_backlinks_panel",
+      "element_id": "backlinks_tab",
+      "action": "click",
+      "description": "Open the Backlinks panel"
+    },
+    {
+      "name": "open_tags_panel",
+      "element_id": "tags_tab",
+      "action": "click",
+      "description": "Open the Tags panel"
+    },
+    {
+      "name": "publish_changes",
+      "element_id": "publish_changes",
+      "action": "click",
+      "description": "Open the publish changes dialog"
+    },
+    {
+      "name": "open_more_options",
+      "element_id": "more_options",
+      "action": "click",
+      "description": "Open the more options menu"
+    },
+    {
+      "name": "change_sort_order",
+      "element_id": "change_sort_order",
+      "action": "click",
+      "description": "Open sort order options"
+    },
+    {
+      "name": "open_settings",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Open settings (Cmd+,)",
+      "shortcut_keys": ["COMMAND", ","],
+      "wait_after": 0.5
+    },
+    {
+      "name": "toggle_left_sidebar",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Toggle left sidebar (Cmd+\\)",
+      "shortcut_keys": ["COMMAND", "\\"]
+    },
+    {
+      "name": "search_in_switcher",
+      "element_id": "quick_switcher_input",
+      "action": "clear_and_type",
+      "description": "Type search query in quick switcher",
+      "params": {"text": ""}
+    },
+    {
+      "name": "select_first_result",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Select first search result (Enter)",
+      "shortcut_keys": ["ENTER"]
+    },
+    {
+      "name": "wait_page_load",
+      "element_id": "app_container",
+      "action": "wait_visible",
+      "description": "Wait for Obsidian to load",
+      "params": {"timeout": 10.0}
+    },
+    {
+      "name": "wait_modal_appear",
+      "element_id": "quick_switcher_modal",
+      "action": "wait_visible",
+      "description": "Wait for modal to appear",
+      "params": {"timeout": 5.0}
+    },
+    {
+      "name": "wait_modal_disappear",
+      "element_id": "quick_switcher_modal",
+      "action": "wait_invisible",
+      "description": "Wait for modal to disappear",
+      "params": {"timeout": 5.0}
+    }
+  ]
+}

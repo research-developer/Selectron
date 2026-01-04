@@ -1,0 +1,351 @@
+{
+  "app_name": "Cursor",
+  "version": "1.0.0",
+  "operations": [
+    {
+      "name": "open_command_palette",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Open the command palette (Cmd+Shift+P)",
+      "shortcut_keys": ["COMMAND", "SHIFT", "p"],
+      "wait_after": 0.3,
+      "post_condition": "lambda driver: driver.find_elements(By.CSS_SELECTOR, '.quick-input-widget')"
+    },
+    {
+      "name": "open_quick_open",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Open quick file search (Cmd+P)",
+      "shortcut_keys": ["COMMAND", "p"],
+      "wait_after": 0.3,
+      "post_condition": "lambda driver: driver.find_elements(By.CSS_SELECTOR, '.quick-input-widget')"
+    },
+    {
+      "name": "create_new_file",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Create a new file (Cmd+N)",
+      "shortcut_keys": ["COMMAND", "n"],
+      "wait_after": 0.5
+    },
+    {
+      "name": "save_file",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Save current file (Cmd+S)",
+      "shortcut_keys": ["COMMAND", "s"],
+      "wait_after": 0.3
+    },
+    {
+      "name": "close_tab",
+      "element_id": "close_tab",
+      "action": "click",
+      "description": "Close the current tab",
+      "wait_after": 0.3
+    },
+    {
+      "name": "close_tab_shortcut",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Close current tab (Cmd+W)",
+      "shortcut_keys": ["COMMAND", "w"],
+      "wait_after": 0.3
+    },
+    {
+      "name": "go_back",
+      "element_id": "go_back",
+      "action": "click",
+      "description": "Navigate back in history"
+    },
+    {
+      "name": "go_back_shortcut",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Navigate back via keyboard (Cmd+[)",
+      "shortcut_keys": ["COMMAND", "["]
+    },
+    {
+      "name": "go_forward",
+      "element_id": "go_forward",
+      "action": "click",
+      "description": "Navigate forward in history"
+    },
+    {
+      "name": "go_forward_shortcut",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Navigate forward via keyboard (Cmd+])",
+      "shortcut_keys": ["COMMAND", "]"]
+    },
+    {
+      "name": "toggle_sidebar",
+      "element_id": "toggle_primary_sidebar",
+      "action": "click",
+      "description": "Toggle the primary sidebar visibility"
+    },
+    {
+      "name": "toggle_sidebar_shortcut",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Toggle sidebar via keyboard (Cmd+B)",
+      "shortcut_keys": ["COMMAND", "b"]
+    },
+    {
+      "name": "toggle_panel",
+      "element_id": "toggle_panel",
+      "action": "click",
+      "description": "Toggle the bottom panel visibility"
+    },
+    {
+      "name": "toggle_panel_shortcut",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Toggle panel via keyboard (Cmd+J)",
+      "shortcut_keys": ["COMMAND", "j"]
+    },
+    {
+      "name": "toggle_ai_pane",
+      "element_id": "toggle_ai_pane",
+      "action": "click",
+      "description": "Toggle the AI pane visibility"
+    },
+    {
+      "name": "toggle_ai_pane_shortcut",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Toggle AI pane via keyboard (Opt+Cmd+B)",
+      "shortcut_keys": ["ALT", "COMMAND", "b"]
+    },
+    {
+      "name": "create_new_chat",
+      "element_id": "new_chat_btn",
+      "action": "click",
+      "description": "Create a new AI chat",
+      "wait_after": 0.5
+    },
+    {
+      "name": "create_new_chat_shortcut",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Create new chat via keyboard (Cmd+T)",
+      "shortcut_keys": ["COMMAND", "t"],
+      "wait_after": 0.5
+    },
+    {
+      "name": "show_chat_history",
+      "element_id": "chat_history_btn",
+      "action": "click",
+      "description": "Show the chat history panel",
+      "wait_after": 0.3
+    },
+    {
+      "name": "show_chat_history_shortcut",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Show chat history via keyboard (Opt+Cmd+')",
+      "shortcut_keys": ["ALT", "COMMAND", "'"],
+      "wait_after": 0.3
+    },
+    {
+      "name": "open_chat_settings",
+      "element_id": "chat_settings_btn",
+      "action": "click",
+      "description": "Open chat settings menu"
+    },
+    {
+      "name": "switch_to_agents",
+      "element_id": "agents_tab",
+      "action": "click",
+      "description": "Switch to Agents mode in AI pane"
+    },
+    {
+      "name": "switch_to_editor",
+      "element_id": "editor_tab",
+      "action": "click",
+      "description": "Switch to Editor mode in AI pane"
+    },
+    {
+      "name": "open_terminal",
+      "element_id": "terminal_tab",
+      "action": "click",
+      "description": "Open the terminal panel"
+    },
+    {
+      "name": "open_terminal_shortcut",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Toggle terminal via keyboard (Ctrl+`)",
+      "shortcut_keys": ["CONTROL", "`"]
+    },
+    {
+      "name": "open_output",
+      "element_id": "output_tab",
+      "action": "click",
+      "description": "Open the output panel"
+    },
+    {
+      "name": "open_output_shortcut",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Toggle output via keyboard (Shift+Cmd+U)",
+      "shortcut_keys": ["SHIFT", "COMMAND", "u"]
+    },
+    {
+      "name": "open_problems",
+      "element_id": "problems_tab",
+      "action": "click",
+      "description": "Open the problems panel"
+    },
+    {
+      "name": "hide_panel",
+      "element_id": "hide_panel",
+      "action": "click",
+      "description": "Hide the bottom panel"
+    },
+    {
+      "name": "view_all_chats",
+      "element_id": "view_all_chats",
+      "action": "click",
+      "description": "View all past chats",
+      "wait_after": 0.3
+    },
+    {
+      "name": "show_notifications",
+      "element_id": "notifications",
+      "action": "click",
+      "description": "Show the notifications panel"
+    },
+    {
+      "name": "clear_notification",
+      "element_id": "clear_notification",
+      "action": "click",
+      "description": "Clear the current notification"
+    },
+    {
+      "name": "add_code_cell",
+      "element_id": "add_code_cell",
+      "action": "click",
+      "description": "Add a new code cell in notebook"
+    },
+    {
+      "name": "add_markdown_cell",
+      "element_id": "add_markdown_cell",
+      "action": "click",
+      "description": "Add a new markdown cell in notebook"
+    },
+    {
+      "name": "run_all_cells",
+      "element_id": "run_all",
+      "action": "click",
+      "description": "Run all cells in notebook"
+    },
+    {
+      "name": "restart_kernel",
+      "element_id": "restart_kernel",
+      "action": "click",
+      "description": "Restart the Jupyter kernel"
+    },
+    {
+      "name": "clear_all_outputs",
+      "element_id": "clear_all_outputs",
+      "action": "click",
+      "description": "Clear all cell outputs in notebook"
+    },
+    {
+      "name": "delete_cell",
+      "element_id": "delete_cell",
+      "action": "click",
+      "description": "Delete the current cell"
+    },
+    {
+      "name": "open_files_explorer",
+      "element_id": "files_explorer",
+      "action": "click",
+      "description": "Focus the files explorer"
+    },
+    {
+      "name": "split_editor",
+      "element_id": "split_editor",
+      "action": "click",
+      "description": "Split the editor"
+    },
+    {
+      "name": "split_editor_shortcut",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Split editor right via keyboard (Cmd+\\)",
+      "shortcut_keys": ["COMMAND", "\\"]
+    },
+    {
+      "name": "open_settings",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Open settings (Cmd+,)",
+      "shortcut_keys": ["COMMAND", ","],
+      "wait_after": 0.5
+    },
+    {
+      "name": "open_keyboard_shortcuts",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Open keyboard shortcuts (Cmd+K Cmd+S)",
+      "shortcut_keys": ["COMMAND", "k"],
+      "wait_after": 0.3
+    },
+    {
+      "name": "find_in_file",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Open find in file (Cmd+F)",
+      "shortcut_keys": ["COMMAND", "f"],
+      "wait_after": 0.3
+    },
+    {
+      "name": "find_and_replace",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Open find and replace (Cmd+Opt+F)",
+      "shortcut_keys": ["COMMAND", "ALT", "f"],
+      "wait_after": 0.3
+    },
+    {
+      "name": "search_in_workspace",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Search in workspace (Cmd+Shift+F)",
+      "shortcut_keys": ["COMMAND", "SHIFT", "f"],
+      "wait_after": 0.3
+    },
+    {
+      "name": "go_to_line",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Go to line (Ctrl+G)",
+      "shortcut_keys": ["CONTROL", "g"],
+      "wait_after": 0.3
+    },
+    {
+      "name": "go_to_symbol",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Go to symbol in file (Cmd+Shift+O)",
+      "shortcut_keys": ["COMMAND", "SHIFT", "o"],
+      "wait_after": 0.3
+    },
+    {
+      "name": "close_modal",
+      "element_id": "",
+      "action": "shortcut",
+      "description": "Close current modal/dialog (Escape)",
+      "shortcut_keys": ["ESCAPE"],
+      "wait_after": 0.2
+    },
+    {
+      "name": "wait_page_load",
+      "element_id": "statusbar",
+      "action": "wait_visible",
+      "description": "Wait for Cursor to load",
+      "params": {"timeout": 10.0}
+    }
+  ]
+}
