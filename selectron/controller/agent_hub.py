@@ -7,22 +7,15 @@ with gamepad control and notification center integration.
 """
 
 import sys
-import time
-import json
-import subprocess
 from dataclasses import dataclass, field
 from enum import Enum, auto
-from typing import Callable, Dict, List, Optional, Tuple, Any, Union
+from typing import Callable, Dict, List, Optional
 from threading import Event, Thread, Lock
 from datetime import datetime
-from pathlib import Path
 
-from .emulator import GamepadEmulator, GamepadButton, DPadDirection
+from .emulator import GamepadEmulator, GamepadButton
 from .notification_center import (
-    NotificationCenter,
     Notification,
-    NotificationLevel,
-    Agent,
     Team,
     create_notification_center,
 )
@@ -590,6 +583,7 @@ def demo():
     try:
         kb_thread.join()
     except KeyboardInterrupt:
+        # Allow Ctrl+C to break out of the demo loop and proceed to graceful shutdown.
         pass
 
     hub.stop()

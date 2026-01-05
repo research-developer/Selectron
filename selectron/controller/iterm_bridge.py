@@ -9,13 +9,10 @@ This module provides the bridge between the controller emulator
 and the iTerm MCP server for real terminal control.
 """
 
-import sys
 import time
-import json
 import subprocess
 from dataclasses import dataclass
-from typing import Optional, Callable, Dict, Any
-from threading import Thread, Event
+from typing import Optional
 
 from .emulator import GamepadEmulator, GamepadButton, DPadDirection
 from .mapper import (
@@ -414,7 +411,7 @@ def main():
         return
 
     print(f"Connecting to session: {session_id}")
-    controller = GamepadTerminalController(session_id)
+    _controller = GamepadTerminalController(session_id)
 
     print("Controller ready! Use the gamepad to control the terminal.")
     print("Press Ctrl+C to exit.")

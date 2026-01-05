@@ -8,9 +8,9 @@ navigated using the gamepad controller.
 
 import sys
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from enum import Enum, auto
-from typing import Callable, Dict, List, Optional, Tuple, Any, Union
+from typing import List, Optional, Tuple, Any, Union
 from threading import Event
 
 from .emulator import GamepadEmulator, GamepadButton, DPadDirection

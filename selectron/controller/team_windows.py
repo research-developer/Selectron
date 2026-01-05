@@ -6,9 +6,10 @@ Groups agents by team into shared iTerm windows with configurable layouts.
 Integrates with iTerm MCP tools for session management.
 """
 
+import asyncio
 import time
 from dataclasses import dataclass, field
-from enum import Enum, auto
+from enum import Enum
 from typing import Callable, Dict, List, Optional, Any
 from threading import Lock
 
@@ -471,7 +472,6 @@ class TeamWindowManager:
 
                 # Auto-unhighlight after duration
                 if duration:
-                    import asyncio
                     asyncio.create_task(self._delayed_unhighlight(agent, duration))
 
                 return True
@@ -521,7 +521,6 @@ class TeamWindowManager:
 
     async def _delayed_unhighlight(self, agent: AgentSession, duration: float) -> None:
         """Unhighlight after a delay."""
-        import asyncio
         await asyncio.sleep(duration)
         if agent.is_highlighted:
             await self._unhighlight_agent(agent)
@@ -687,5 +686,4 @@ async def demo():
 
 
 if __name__ == "__main__":
-    import asyncio
     asyncio.run(demo())

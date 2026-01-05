@@ -6,7 +6,7 @@ to terminals, IDEs, or other targets.
 """
 
 from abc import ABC, abstractmethod
-from typing import Callable, Optional, Dict, Any
+from typing import Callable, Optional
 import subprocess
 import platform
 

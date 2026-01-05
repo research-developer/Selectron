@@ -6,9 +6,7 @@ Provides a Python interface to the iTerm MCP server for fetching
 real-time agent, team, and notification data.
 """
 
-import json
-import subprocess
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Callable
 from datetime import datetime
 from threading import Lock

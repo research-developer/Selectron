@@ -14,7 +14,6 @@ from .emulator import (
     GamepadEmulator,
     GamepadButton,
     DPadDirection,
-    GamepadState,
 )
 
 

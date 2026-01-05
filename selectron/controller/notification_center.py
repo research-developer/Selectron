@@ -8,15 +8,14 @@ Shows agent notifications, allows team/agent navigation, and session switching.
 
 import sys
 import time
-import json
 from dataclasses import dataclass, field
 from enum import Enum, auto
-from typing import Callable, Dict, List, Optional, Tuple, Any
+from typing import Callable, List, Optional, Any
 from threading import Event, Thread, Lock
 from datetime import datetime
 
 from .emulator import GamepadEmulator, GamepadButton, DPadDirection
-from .menu import ANSI, MenuOption
+from .menu import ANSI
 
 
 class NotificationLevel(Enum):
@@ -695,6 +694,7 @@ def demo():
     try:
         kb_thread.join()
     except KeyboardInterrupt:
+        # Allow Ctrl+C to stop the demo without showing a traceback.
         pass
 
     print(ANSI.SHOW_CURSOR)

@@ -26,8 +26,6 @@ Keyboard mappings (simulating a gamepad):
 
 import sys
 import time
-import threading
-from typing import Optional
 
 from .emulator import GamepadEmulator, GamepadButton, DPadDirection
 from .mapper import ControllerMapper, create_terminal_navigation_profile, create_vim_profile
@@ -420,6 +418,7 @@ def main():
     try:
         demo.run()
     except KeyboardInterrupt:
+        # Allow clean exit on Ctrl+C without showing a stack trace.
         pass
 
 
