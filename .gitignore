@@ -40,23 +40,17 @@ env/
 
 # Logs
 *.log
+appmap.log
 
-# Testing artifacts
-test_evidence/
+# Testing artifacts (keep for reference but can be regenerated)
+# test_evidence/
 
-# Claude Code settings (local only)
+# Claude settings (local only)
 .claude/
 
 # Jupyter
 .ipynb_checkpoints/
 *.jupyter_ystore.db
-
-# Screenshots (generated during discovery)
-*.png
-
-# Environment files
-.env
-.env.local
 
 # Temporary files
 *.tmp

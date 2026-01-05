@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """
-iTerm MCP Client for live data integration.
+iTerm Agent Client for live data integration.
 
 Provides a Python interface to the iTerm MCP server for fetching
 real-time agent, team, and notification data.
+
+Implements the AgentClient protocol from selectron.controller.interfaces.
 """
 
 from dataclasses import dataclass
@@ -11,23 +13,16 @@ from typing import Any, Dict, List, Optional, Callable
 from datetime import datetime
 from threading import Lock
 
-from .notification_center import (
-    Notification,
-    NotificationLevel,
+from ...types import (
     Agent,
     Team,
+    Notification,
+    NotificationLevel,
+    MCPResponse,
 )
 
 
-@dataclass
-class MCPResponse:
-    """Response from an MCP call."""
-    success: bool
-    data: Any = None
-    error: Optional[str] = None
-
-
-class ITermMCPClient:
+class ITermAgentClient:
     """
     Client for communicating with the iTerm MCP server.
 
@@ -38,6 +33,8 @@ class ITermMCPClient:
     - Send messages to sessions
     - Read session output
     - Get notifications
+
+    Implements the AgentClient protocol for dependency injection.
 
     In a real implementation, this would use the MCP protocol directly.
     For now, it uses subprocess calls to interact with the MCP server
@@ -404,20 +401,49 @@ class ITermMCPClient:
         """Send a control character (like Ctrl+C)."""
         return MCPResponse(success=True)
 
+    # === Async Operations (for AgentClientAsync protocol) ===
+
+    async def create_sessions(self, request: Dict[str, Any]) -> Dict[str, Any]:
+        """Create sessions asynchronously."""
+        # Would call MCP create_sessions
+        return {
+            "sessions": [
+                {"session_id": "NEW-ID", "name": s.get("name", "unnamed")}
+                for s in request.get("sessions", [])
+            ],
+            "window_id": request.get("window_id", "NEW-WINDOW"),
+        }
+
+    async def set_active_session(self, request: Dict[str, Any]) -> bool:
+        """Set active session asynchronously."""
+        # Would call MCP set_active_session
+        return True
+
+    async def modify_sessions(self, request: Dict[str, Any]) -> bool:
+        """Modify sessions asynchronously."""
+        # Would call MCP modify_sessions
+        return True
+
 
 # Singleton instance
-_client: Optional[ITermMCPClient] = None
+_client: Optional[ITermAgentClient] = None
 
 
-def get_mcp_client() -> ITermMCPClient:
-    """Get or create the singleton MCP client."""
+def get_iterm_client() -> ITermAgentClient:
+    """Get or create the singleton iTerm client."""
     global _client
     if _client is None:
-        _client = ITermMCPClient()
+        _client = ITermAgentClient()
     return _client
 
 
-def reset_mcp_client() -> None:
-    """Reset the singleton MCP client."""
+def reset_iterm_client() -> None:
+    """Reset the singleton iTerm client."""
     global _client
     _client = None
+
+
+# Backward compatibility aliases
+ITermMCPClient = ITermAgentClient
+get_mcp_client = get_iterm_client
+reset_mcp_client = reset_iterm_client

@@ -14,8 +14,8 @@ import subprocess
 from dataclasses import dataclass
 from typing import Optional
 
-from .emulator import GamepadEmulator, GamepadButton, DPadDirection
-from .mapper import (
+from ...core.emulator import GamepadEmulator, GamepadButton, DPadDirection
+from ...core.mapper import (
     ControllerMapper,
     ControllerProfile,
     ActionBinding,
@@ -403,7 +403,7 @@ def main():
         print("The session 'gamepad-demo' has been created for you.")
         print()
         print("Usage:")
-        print("  from selectron.controller.iterm_bridge import GamepadTerminalController")
+        print("  from selectron.controller.bridges.iterm import GamepadTerminalController")
         print("  ctrl = GamepadTerminalController('SESSION_ID')")
         print("  ctrl.up()      # Navigate up")
         print("  ctrl.confirm() # Press enter")

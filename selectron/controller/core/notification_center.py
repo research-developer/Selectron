@@ -8,78 +8,29 @@ Shows agent notifications, allows team/agent navigation, and session switching.
 
 import sys
 import time
-from dataclasses import dataclass, field
 from enum import Enum, auto
 from typing import Callable, List, Optional, Any
 from threading import Event, Thread, Lock
-from datetime import datetime
 
 from .emulator import GamepadEmulator, GamepadButton, DPadDirection
 from .menu import ANSI
+from ..types import Agent, Team, Notification, NotificationLevel
 
 
-class NotificationLevel(Enum):
-    """Notification severity levels."""
-    INFO = "info"
-    SUCCESS = "success"
-    WARNING = "warning"
-    ERROR = "error"
-    BLOCKED = "blocked"
+# Helper to map notification color_name to ANSI codes
+_COLOR_MAP = {
+    "blue": ANSI.BLUE,
+    "green": ANSI.GREEN,
+    "yellow": ANSI.YELLOW,
+    "red": ANSI.RED,
+    "magenta": ANSI.MAGENTA,
+    "white": ANSI.WHITE,
+}
 
 
-@dataclass
-class Notification:
-    """A single notification."""
-    id: str
-    agent: str
-    level: NotificationLevel
-    summary: str
-    context: str = ""
-    action_hint: str = ""
-    timestamp: datetime = field(default_factory=datetime.now)
-    read: bool = False
-
-    @property
-    def icon(self) -> str:
-        icons = {
-            NotificationLevel.INFO: "ℹ️",
-            NotificationLevel.SUCCESS: "✅",
-            NotificationLevel.WARNING: "⚠️",
-            NotificationLevel.ERROR: "❌",
-            NotificationLevel.BLOCKED: "🚫",
-        }
-        return icons.get(self.level, "📌")
-
-    @property
-    def color(self) -> str:
-        colors = {
-            NotificationLevel.INFO: ANSI.BLUE,
-            NotificationLevel.SUCCESS: ANSI.GREEN,
-            NotificationLevel.WARNING: ANSI.YELLOW,
-            NotificationLevel.ERROR: ANSI.RED,
-            NotificationLevel.BLOCKED: ANSI.MAGENTA,
-        }
-        return colors.get(self.level, ANSI.WHITE)
-
-
-@dataclass
-class Agent:
-    """An agent in the system."""
-    name: str
-    session_id: str
-    teams: List[str] = field(default_factory=list)
-    is_processing: bool = False
-    locked: bool = False
-    locked_by: Optional[str] = None
-
-
-@dataclass
-class Team:
-    """A team of agents."""
-    name: str
-    description: str = ""
-    parent_team: Optional[str] = None
-    members: List[str] = field(default_factory=list)
+def _notification_color(notification: Notification) -> str:
+    """Get ANSI color code for a notification."""
+    return _COLOR_MAP.get(notification.color_name, ANSI.WHITE)
 
 
 class NotificationCenterState(Enum):
@@ -526,7 +477,7 @@ class NotificationCenter:
             read_marker = "" if notif.read else "●"
 
             # Build notification line
-            color = notif.color if is_selected else ANSI.RESET
+            color = _notification_color(notif) if is_selected else ANSI.RESET
             bg = ANSI.BG_WHITE + ANSI.BLACK if is_selected else ""
 
             line = f"{bg}{color}{prefix}{notif.icon} {read_marker} [{notif.agent}] {notif.summary[:40]}{ANSI.RESET}"

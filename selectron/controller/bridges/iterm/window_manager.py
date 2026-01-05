@@ -13,7 +13,7 @@ from enum import Enum
 from typing import Callable, Dict, List, Optional, Any
 from threading import Lock
 
-from .menu import ANSI
+from ...core.menu import ANSI
 
 
 class WindowLayout(Enum):

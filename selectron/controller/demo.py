@@ -27,9 +27,10 @@ Keyboard mappings (simulating a gamepad):
 import sys
 import time
 
-from .emulator import GamepadEmulator, GamepadButton, DPadDirection
-from .mapper import ControllerMapper, create_terminal_navigation_profile, create_vim_profile
-from .executors import PrintExecutor, AppleScriptExecutor
+from .core.emulator import GamepadEmulator, GamepadButton, DPadDirection
+from .core.mapper import ControllerMapper, create_terminal_navigation_profile, create_vim_profile
+from .core.executors import PrintExecutor
+from .bridges.iterm.executor import AppleScriptExecutor
 
 
 # ANSI escape codes for terminal UI

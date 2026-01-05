@@ -14,12 +14,9 @@ from threading import Event, Thread, Lock
 from datetime import datetime
 
 from .emulator import GamepadEmulator, GamepadButton
-from .notification_center import (
-    Notification,
-    Team,
-    create_notification_center,
-)
+from .notification_center import create_notification_center
 from .menu import GamepadMenu, MenuOption, MenuResult, ANSI
+from ..types import Notification, Team
 
 
 class MessageType(Enum):
