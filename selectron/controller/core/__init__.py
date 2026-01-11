@@ -44,6 +44,18 @@ from .choice_engine import (
     AnswerChoice,
 )
 
+# Hardware gamepad (optional - requires pygame)
+try:
+    from .hardware import (
+        HardwareGamepad,
+        ControllerInfo,
+        list_controllers,
+        create_hardware_gamepad,
+    )
+    _HAS_HARDWARE = True
+except ImportError:
+    _HAS_HARDWARE = False
+
 __all__ = [
     # Emulator
     'GamepadEmulator',
@@ -82,4 +94,9 @@ __all__ = [
     'ChoiceEngine',
     'ChoiceSet',
     'AnswerChoice',
+    # Hardware (optional)
+    'HardwareGamepad',
+    'ControllerInfo',
+    'list_controllers',
+    'create_hardware_gamepad',
 ]

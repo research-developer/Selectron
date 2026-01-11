@@ -83,6 +83,22 @@ from .core.choice_engine import (
     create_choice_engine,
 )
 
+# === Hardware Gamepad (optional - requires pygame) ===
+try:
+    from .core.hardware import (
+        HardwareGamepad,
+        ControllerInfo,
+        list_controllers,
+        create_hardware_gamepad,
+    )
+    _HAS_HARDWARE = True
+except ImportError:
+    _HAS_HARDWARE = False
+    HardwareGamepad = None
+    ControllerInfo = None
+    list_controllers = None
+    create_hardware_gamepad = None
+
 # === iTerm Bridge (platform-specific) ===
 from .bridges.iterm.client import (
     ITermAgentClient,
@@ -184,6 +200,11 @@ __all__ = [
     "InlineListItem",
     "InlineListSelector",
     "create_choice_engine",
+    # Hardware Gamepad (optional)
+    "HardwareGamepad",
+    "ControllerInfo",
+    "list_controllers",
+    "create_hardware_gamepad",
     # iTerm Client
     "ITermAgentClient",
     "get_iterm_client",
