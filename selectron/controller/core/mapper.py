@@ -170,6 +170,9 @@ class ControllerMapper:
         self._event_log: List[str] = []
         self._log_events = True
 
+        # Callbacks for unmapped button presses (for learning systems)
+        self._unmapped_callbacks: List[Callable[[GamepadButton, bool], None]] = []
+
     @property
     def active_profile(self) -> Optional[ControllerProfile]:
         """Get the currently active profile."""
@@ -183,6 +186,19 @@ class ControllerMapper:
         This allows plugging in different backends (terminal, IDE, etc.).
         """
         self._executor = executor
+
+    def on_unmapped(self, callback: Callable[[GamepadButton, bool], None]) -> None:
+        """
+        Register callback for unmapped button presses.
+
+        This allows external systems (like learning agents) to handle
+        buttons that don't have mappings in the current profile.
+
+        Args:
+            callback: Function called with (button, pressed) when an
+                     unmapped button is pressed or released.
+        """
+        self._unmapped_callbacks.append(callback)
 
     def add_profile(self, profile: ControllerProfile) -> None:
         """Add a profile to the mapper."""
@@ -230,7 +246,13 @@ class ControllerMapper:
 
         binding = self._active_profile.button_bindings.get(button)
         if not binding:
-            self._log(f"No binding for {button.name}")
+            self._log(f"UNMAPPED: {button.name} {'pressed' if pressed else 'released'}")
+            # Fire unmapped callbacks for learning systems
+            for cb in self._unmapped_callbacks:
+                try:
+                    cb(button, pressed)
+                except Exception as e:
+                    self._log(f"Unmapped callback error: {e}")
             return
 
         if pressed:

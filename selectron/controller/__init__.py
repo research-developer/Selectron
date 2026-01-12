@@ -99,6 +99,28 @@ except ImportError:
     list_controllers = None
     create_hardware_gamepad = None
 
+# === Learning System (optional - requires google-adk, pyobjc) ===
+try:
+    from .core.learner import (
+        LearningController,
+        LearningFeedback,
+        FeedbackType,
+        ActionStore,
+        LearnedAction,
+        ButtonLearningAgent,
+        MockLearningAgent,
+    )
+    _HAS_LEARNER = True
+except ImportError:
+    _HAS_LEARNER = False
+    LearningController = None
+    LearningFeedback = None
+    FeedbackType = None
+    ActionStore = None
+    LearnedAction = None
+    ButtonLearningAgent = None
+    MockLearningAgent = None
+
 # === iTerm Bridge (platform-specific) ===
 from .bridges.iterm.client import (
     ITermAgentClient,
@@ -205,6 +227,14 @@ __all__ = [
     "ControllerInfo",
     "list_controllers",
     "create_hardware_gamepad",
+    # Learning System (optional)
+    "LearningController",
+    "LearningFeedback",
+    "FeedbackType",
+    "ActionStore",
+    "LearnedAction",
+    "ButtonLearningAgent",
+    "MockLearningAgent",
     # iTerm Client
     "ITermAgentClient",
     "get_iterm_client",
