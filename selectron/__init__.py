@@ -88,7 +88,7 @@ from .discovery import (
 )
 
 # App Scanner
-from .app_scanner import ElectronApp, ElectronAppScanner, get_scanner
+from .app_scanner import ElectronApp, AppRegistry, get_app_registry
 
 # Main Driver Manager
 from .driver import ElectronDriverManager
@@ -142,8 +142,8 @@ __all__ = [
 
     # App Scanner
     "ElectronApp",
-    "ElectronAppScanner",
-    "get_scanner",
+    "AppRegistry",
+    "get_app_registry",
 
     # Main Driver Manager
     "ElectronDriverManager",
