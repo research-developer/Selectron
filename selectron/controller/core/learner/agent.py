@@ -9,8 +9,7 @@ import asyncio
 import base64
 import json
 from dataclasses import dataclass
-from typing import List, Optional, Dict, Any
-from pathlib import Path
+from typing import List, Dict, Any
 
 from ..emulator import GamepadButton
 from .store import LearnedAction

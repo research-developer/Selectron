@@ -10,7 +10,7 @@ from typing import Optional
 from .interfaces import AgentClient, MockAgentClient
 from .core.emulator import GamepadEmulator
 from .core.notification_center import NotificationCenter, create_notification_center
-from .core.agent_hub import AgentHub, create_agent_hub
+from .core.agent_hub import AgentHub
 from .core.choice_engine import ChoiceEngine, AnswerGenerator, create_choice_engine
 
 

@@ -8,7 +8,6 @@ real-time agent, team, and notification data.
 Implements the AgentClient protocol from selectron.controller.interfaces.
 """
 
-from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Callable
 from datetime import datetime
 from threading import Lock

@@ -23,7 +23,7 @@ import asyncio
 import time
 import threading
 from pathlib import Path
-from typing import Dict, Optional, Callable, Any
+from typing import Dict, Optional, Callable
 
 from ..emulator import GamepadButton
 from ..mapper import ControllerMapper
@@ -115,7 +115,7 @@ class LearningController:
     def _run_async(self, coro) -> None:
         """Run a coroutine, handling event loop creation."""
         try:
-            loop = asyncio.get_running_loop()
+            asyncio.get_running_loop()
             # Already in async context - create task
             asyncio.create_task(coro)
         except RuntimeError:

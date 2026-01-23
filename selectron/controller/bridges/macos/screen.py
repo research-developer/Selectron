@@ -39,14 +39,7 @@ def get_cursor_position() -> Tuple[int, int]:
         point = CGEventGetLocation(event)
         return int(point.x), int(point.y)
     except ImportError:
-        # Fallback: use AppleScript
-        script = '''
-        tell application "System Events"
-            set mousePos to get position of first process whose frontmost is true
-            return (item 1 of mousePos) & "," & (item 2 of mousePos)
-        end tell
-        '''
-        # This fallback may not work well, Quartz is preferred
+        # Quartz is required for mouse position - no reliable fallback
         raise ImportError("pyobjc-framework-Quartz required: pip install pyobjc-framework-Quartz")
 
 

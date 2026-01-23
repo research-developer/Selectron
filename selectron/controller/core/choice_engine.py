@@ -12,20 +12,16 @@ Generates multiple AI-powered answer choices that users can:
 Integrates with the notification system for display.
 """
 
-import sys
-import time
 import asyncio
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from enum import Enum, auto
 from typing import (
-    Any, Callable, Dict, List, Optional, Tuple, Union,
-    AsyncGenerator, Protocol, TypeVar
+    Any, Callable, Dict, List, Optional
 )
 from datetime import datetime
 from threading import Lock
 import uuid
-import json
 
 from .emulator import GamepadEmulator, GamepadButton, DPadDirection
 from .menu import ANSI

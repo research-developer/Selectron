@@ -8,13 +8,11 @@ and presents the same interface as GamepadEmulator for seamless integration.
 Requires: pip install pygame
 """
 
-import os
 import sys
 import time
 import threading
-from dataclasses import dataclass, field
-from typing import Callable, Dict, List, Optional, Any
-from enum import Enum
+from dataclasses import dataclass
+from typing import Callable, List, Optional
 
 # macOS requires pygame event pump on main thread
 IS_MACOS = sys.platform == "darwin"
